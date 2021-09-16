@@ -1,15 +1,15 @@
 'use strict';
+const memo = new Map();
+memo.set(0, 0);
+memo.set(1, 1);
+
 function fib(n) {
-    // 0 の時は 0 を返す
-    if (n === 0) {
-        return 0;
+    if (memo.has(n)) {
+        return memo.get(n);
     }
-    // 1 の時は 1 を返す
-    else if (n === 1) {
-        return 1;
-    }
-    // それ以外の時
-    return fib(n - 1) + fib(n - 2);
+    const value = fib(n - 1) + fib(n - 2);
+    memo.set(n, value);
+    return value;
 }
 const length = 40;
 for (let i = 0; i <= length; i++){
